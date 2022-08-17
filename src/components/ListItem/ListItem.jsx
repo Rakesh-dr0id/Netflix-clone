@@ -16,17 +16,17 @@ const ListItem = ({ index }) => {
   //   'https://api.themoviedb.org/3/movie/550?api_key=61dbd499ed687d1cda34d63844d43610';
 
   const [isHovered, setIsHovered] = useState(false);
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(requests.fetchTopRated);
-      setMovies(request.data.results);
-      return request;
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const request = await axios.get(requests.fetchTopRated);
+  //     setMovies(request.data.results);
+  //     return request;
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <div
@@ -37,13 +37,13 @@ const ListItem = ({ index }) => {
       }}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {movies.map((movie) => (
+      {/* {movies.map((movie) => (
         <img
           key={movie.id}
           src={`${base_url}` ? movie.poster_path : movie.backdrop_path}
           alt="posters"
         />
-      ))}
+      ))} */}
 
       <img src={Extraction} alt="Extraction poster" />
 
