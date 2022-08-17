@@ -2,7 +2,11 @@ import React from 'react';
 import './login.scss';
 import Logo from '../../assets/netflix.jpg';
 
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="login">
       <div className="top">
@@ -15,7 +19,14 @@ const Login = () => {
           <h1>Sign In</h1>
           <input type="email" placeholder="email or phone number" />
           <input type="password" placeholder="password" />
-          <button className="loginButton">Sign In</button>
+          <button
+            onClick={() => {
+              navigate('home');
+            }}
+            className="loginButton"
+          >
+            Sign In
+          </button>
           <span>
             New to Netflix? <b>Sign up now.</b>
           </span>

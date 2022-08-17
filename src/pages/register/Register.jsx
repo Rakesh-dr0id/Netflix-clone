@@ -1,10 +1,14 @@
 import React, { useState, useRef } from 'react';
 import './register.scss';
 import Logo from '../../assets/netflix.jpg';
+// import Login from '../login/Login';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -14,6 +18,7 @@ const Register = () => {
   };
   const handleFinish = () => {
     setPassword(passwordRef.current.value);
+    navigate('login');
   };
 
   return (
@@ -24,6 +29,7 @@ const Register = () => {
           <button className="loginButton">Sign In</button>
         </div>
       </div>
+
       <div className="container">
         <h1>Unlimited movies, TV shows, and more</h1>
         <h2>Watch anywhere, Cancel anytime.</h2>

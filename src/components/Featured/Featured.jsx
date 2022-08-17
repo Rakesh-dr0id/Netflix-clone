@@ -5,7 +5,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Logo from '../../assets/stlogo.png';
 
+import { useNavigate } from 'react-router-dom';
+
 const Featured = ({ type }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="featured">
       {type && (
@@ -40,7 +44,12 @@ const Featured = ({ type }) => {
           little girl.
         </span>
         <div className="buttons">
-          <button className="play">
+          <button
+            onClick={() => {
+              navigate('watch');
+            }}
+            className="play"
+          >
             <PlayArrowIcon />
             <span>Play</span>
           </button>

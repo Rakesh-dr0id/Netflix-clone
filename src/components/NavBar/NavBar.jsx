@@ -5,8 +5,11 @@ import Doggo from '../../assets/doggo.jpg';
 import { Notifications, Search } from '@mui/icons-material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
+import { useNavigate } from 'react-router-dom';
+
 const NavBar = () => {
   const [isScroll, setIsScroll] = useState(false);
+  const navigate = useNavigate();
 
   window.onscroll = () => {
     setIsScroll(window.pageYOffset === 0 ? false : true);
@@ -34,7 +37,13 @@ const NavBar = () => {
             <ArrowDropDownIcon className="icon" />
             <div className="options">
               <span>Settings</span>
-              <span>Log Out</span>
+              <span
+                onClick={() => {
+                  navigate(-1);
+                }}
+              >
+                Log Out
+              </span>
             </div>
           </div>
         </div>

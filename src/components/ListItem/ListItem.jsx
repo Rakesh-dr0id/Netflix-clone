@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './listItem.scss';
 import Extraction from '../../assets/Extraction.jpg';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -7,8 +7,27 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import TrailerVideo from '../../assets/strangerthings.mp4';
 
+import requests from './../../request';
+import axios from 'axios';
+
 const ListItem = ({ index }) => {
+  const base_url = 'https://image.tmdb.org/t/p/original/';
+  // const base_url =
+  //   'https://api.themoviedb.org/3/movie/550?api_key=61dbd499ed687d1cda34d63844d43610';
+
   const [isHovered, setIsHovered] = useState(false);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(requests.fetchTopRated);
+      setMovies(request.data.results);
+      return request;
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div
       className="listItem"
@@ -18,7 +37,16 @@ const ListItem = ({ index }) => {
       }}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {movies.map((movie) => (
+        <img
+          key={movie.id}
+          src={`${base_url}` ? movie.poster_path : movie.backdrop_path}
+          alt="posters"
+        />
+      ))}
+
       <img src={Extraction} alt="Extraction poster" />
+
       {isHovered && (
         <>
           <video src={TrailerVideo} autoPlay={true} loop />
